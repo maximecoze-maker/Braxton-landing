@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braxton Special Situation</title>
+<meta name="description" content="Concrétisez vos ambitions immobilières. Structuration sur-mesure : dette privée, portage foncier, quasi-fonds propres. Réponse sous 48h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="logo">
+      <svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="14" width="7" height="14" rx="1.5" fill="#9FC7BE"/>
+        <rect x="10" y="7" width="7" height="21" rx="1.5" fill="#FFFFFF"/>
+        <rect x="20" y="0" width="7" height="28" rx="1.5" fill="#FFFFFF"/>
+      </svg>
+      <span class="logo-text">braxton<small>LAB</small></span>
+    </a>
+    <nav class="main-nav">
+      <a href="https://braxtonam.com" target="_blank" rel="noopener">Home</a>
+      <a href="#solutions">Nos Solutions</a>
+      <a href="#lab">Braxton Lab</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <h1>Concrétisez vos ambitions immobilières.<br><span class="muted">Sans compromis.</span></h1>
+      <p class="hero-lead">
+        Obtenez une structuration sur-mesure (dette privée, portage foncier, quasi-fonds propres)
+        et une proposition d'accompagnement sous 48h. Nous transformons la complexité de vos
+        dossiers en rentabilité immédiate.
+      </p>
+      <ul class="hero-points">
+        <li><span class="dot"></span>De 500k€ à 50M€</li>
+        <li><span class="dot"></span>Fonds disponibles sous 2 à 5 semaines</li>
+        <li><span class="dot"></span>100% Confidentiel</li>
+        <li><span class="dot"></span>Sans engagement</li>
+      </ul>
+    </div>
+
+    <!-- ===== MULTI-STEP FORM ===== -->
+    <div class="form-card" id="leadForm">
+      <div class="steps-bar">
+        <div class="step-item active" data-step-indicator="1">
+          <span class="step-circle">1</span><span class="step-label">Vos coordonnées</span>
+        </div>
+        <div class="step-item" data-step-indicator="2">
+          <span class="step-circle">2</span><span class="step-label">Votre projet</span>
+        </div>
+        <div class="step-item" data-step-indicator="3">
+          <span class="step-circle">3</span><span class="step-label">Documentation</span>
+        </div>
+      </div>
+      <div class="steps-track"><div class="steps-progress" id="stepsProgress"></div></div>
+
+      <form id="multiStepForm" novalidate>
+        <!-- STEP 1 -->
+        <div class="form-step active" data-step="1">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Jean" required>
+            </div>
+            <div class="form-field">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" placeholder="Dupont" required>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="email">Email professionnel</label>
+            <input type="email" id="email" name="email" placeholder="jean@entreprise.com" required>
+          </div>
+          <div class="form-field">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" placeholder="+33 6 12 34 56 78" required>
+          </div>
+          <div class="form-field">
+            <label for="secteur">Secteur d'activité</label>
+            <select id="secteur" name="secteur" required>
+              <option value="" disabled selected>Sélectionnez...</option>
+              <option>Promoteur immobilier</option>
+              <option>Marchand de biens</option>
+              <option>Foncière / SCPI</option>
+              <option>Family Office</option>
+              <option>Autre opérateur</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="form-step" data-step="2">
+          <div class="form-field">
+            <label for="besoin">Votre besoin principal</label>
+            <select id="besoin" name="besoin" required>
+              <option value="" disabled selected>Sélectionnez votre besoin...</option>
+              <option>Financement rapide (Dette / Substitution banque)</option>
+              <option>J'ai la dette bancaire, je cherche l'apport (Quasi-fonds propres)</option>
+              <option>J'ai un besoin de trésorerie urgent (Portage VCP)</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="typologie">Typologie d'actif</label>
+            <select id="typologie" name="typologie" required>
+              <option value="" disabled selected>Sélectionnez...</option>
+              <option>Résidentiel</option>
+              <option>Bureau</option>
+              <option>Commerce</option>
+              <option>Logistique / Activité</option>
+              <option>Hôtellerie</option>
+              <option>Mixte</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="valorisation">Valorisation visée à terme (€)</label>
+            <input type="number" id="valorisation" name="valorisation" placeholder="Ex : 5 000 000 €">
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="form-step" data-step="3">
+          <div class="form-field">
+            <label>Uploadez votre Teaser / Business Plan</label>
+            <label class="dropzone" for="fileUpload" id="dropzone">
+              <input type="file" id="fileUpload" name="fileUpload" accept=".pdf,.doc,.docx" hidden>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+              <span id="dropzoneText">Glissez un PDF ou cliquez ici</span>
+            </label>
+            <p class="hint">Formats acceptés : PDF, DOC, DOCX — Max 10 Mo</p>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <button type="button" class="btn-link" id="btnBack" hidden>&larr; Retour</button>
+          <button type="submit" class="btn-primary" id="btnNext">Démarrer mon étude &rarr;</button>
+        </div>
+        <p class="step-hint" id="stepHint">Étape 1 sur 3 — Cela prend moins de 2 minutes</p>
+      </form>
+
+      <div class="success-panel" id="formSuccess" hidden>
+        <div class="success-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3>Votre dossier a bien été transmis&nbsp;!</h3>
+        <p>Merci, votre demande a été envoyée avec succès à notre équipe. Un responsable
+        d'investissement Braxton l'étudie et revient vers vous <strong>sous 48h</strong> pour
+        échanger sur votre projet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALL BAR ===== -->
+<section class="call-bar">
+  <div class="container call-bar-inner">
+    <p><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Préférez-vous en discuter d'abord&nbsp;? Prenez RDV directement avec un responsable d'investissement.</p>
+    <a href="#" class="btn-primary" id="planCallBtn">Planifier un appel</a>
+  </div>
+</section>
+
+<!-- ===== SOLUTIONS ===== -->
+<section class="solutions" id="solutions">
+  <div class="container">
+    <p class="eyebrow">Nos solutions</p>
+    <h2>Propulsez vos projets immobiliers avec nos solutions de financement sur-mesure</h2>
+    <p class="section-lead">De l'acquisition foncière à la livraison, nous structurons le capital dont vous avez besoin pour maximiser votre rentabilité et accélérer vos opérations.</p>
+
+    <div class="cards-grid">
+      <article class="solution-card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21V7l7-4v18M3 21h18M10 21V11l7-4v14M14 9h3M14 13h3M14 17h3"/></svg></div>
+        <p class="card-eyebrow">Dette privée</p>
+        <h3>Financement obligataire</h3>
+        <p>Boostez votre effet de levier. En alternative ou en complément de votre banque (jusqu'à 70% LTV), nous créons une dette sur-mesure (senior, mezzanine, junior ou whole loan) adaptée à la complexité et au calendrier de votre projet.</p>
+        <a href="#" class="card-link">Simuler mon financement &rarr;</a>
+      </article>
+
+      <article class="solution-card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l6-6 4 4 8-8M21 7v6"/></svg></div>
+        <p class="card-eyebrow">Preferred equity</p>
+        <h3>Actionnaire dormant</h3>
+        <p>Préservez votre trésorerie. Nous co-investissons à vos côtés en apportant jusqu'à 99% des fonds propres exigés par votre banque (via SCCV). Vous conservez le contrôle total du pilotage de votre opération tout en multipliant votre capacité d'investissement.</p>
+        <a href="#" class="card-link">Discuter de mon projet &rarr;</a>
+      </article>
+
+      <article class="solution-card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a7 7 0 00-4 12.75V19a4 4 0 008 0v-4.25A7 7 0 0012 2z"/><path d="M9 21h6"/></svg></div>
+        <p class="card-eyebrow">VCP / Portage</p>
+        <h3>Portage foncier</h3>
+        <p>Libérez des liquidités immédiates. Grâce au portage foncier (VCP), nous débloquons instantanément votre trésorerie en acquérant votre foncier. Une solution agile pour avancer sans attendre et sécuriser vos futures marges.</p>
+        <a href="#" class="card-link">Débloquer ma trésorerie &rarr;</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LTV / STRUCTURE DU CAPITAL ===== -->
+<section class="capital">
+  <div class="container capital-inner">
+    <div class="ltv-col">
+      <p class="eyebrow">Loan to Value (LTV)</p>
+      <div class="ltv-bar bar-1"><span>Fonds Propres Opérateur</span><strong>10-20%</strong></div>
+      <div class="ltv-bar bar-2"><span>Pref Equity / Quasi-FP</span><strong>10-25%</strong></div>
+      <div class="ltv-bar bar-3"><span>Dette Privée Obligataire (Mezzanine)</span><strong>15-25%</strong></div>
+      <div class="ltv-bar bar-4"><span>Dette Senior (Banque / Obligation)</span><strong>50-70%</strong></div>
+    </div>
+    <div class="capital-col">
+      <h2>Structure du Capital</h2>
+      <p>Notre approche multi-strate nous permet d'intervenir à chaque niveau de la structure de capital, du senior debt jusqu'au quasi-fonds propres.</p>
+      <p>Le <strong>Preferred Equity</strong> se positionne entre la dette senior et les fonds propres de l'opérateur, offrant un profil rendement/risque ajusté avec priorité de remboursement.</p>
+      <p>La <strong>dette privée obligataire</strong> (senior ou mezzanine) permet de financer jusqu'à 80% de la valeur de l'actif avec des garanties de premier rang.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST BADGES ===== -->
+<section class="trust">
+  <div class="container trust-inner">
+    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg> SSL Encrypted</span>
+    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg> GDPR Compliant</span>
+    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg> ISO 27001</span>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <svg width="26" height="22" viewBox="0 0 34 28" fill="none"><rect x="0" y="14" width="7" height="14" rx="1.5" fill="#9FC7BE"/><rect x="10" y="7" width="7" height="21" rx="1.5" fill="#FFFFFF"/><rect x="20" y="0" width="7" height="28" rx="1.5" fill="#FFFFFF"/></svg>
+      <span>Braxton AM</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="#">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+      <a href="https://braxtonam.com" target="_blank" rel="noopener">braxtonam.com</a>
+    </nav>
+    <p class="footer-copy">© 2026 Braxton Asset Management. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
