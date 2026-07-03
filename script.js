@@ -112,9 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ---------- "Planifier un appel" -> scroll to form ---------- */
+  /* ---------- "Planifier un appel" -> Calendly popup ---------- */
   document.getElementById('planCallBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
-    document.getElementById('leadForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({ url: 'https://calendly.com/maxime-braxtonam/30min' });
+    } else {
+      // Calendly script not loaded yet (slow connection) — fall back to opening in a new tab.
+      window.open('https://calendly.com/maxime-braxtonam/30min', '_blank');
+    }
   });
 });
