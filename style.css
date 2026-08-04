@@ -50,21 +50,7 @@ button { font-family: inherit; cursor: pointer; }
   height: 76px;
 }
 .logo { display: flex; align-items: center; gap: 10px; }
-.logo-text {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 20px;
-  color: #fff;
-  line-height: 1.1;
-  display: flex;
-  flex-direction: column;
-}
-.logo-text small {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: #9FC7BE;
-}
+.logo-img { height: 32px; width: auto; display: block; }
 .main-nav { display: flex; gap: 32px; }
 .main-nav a {
   color: #E8F1EE;
@@ -160,7 +146,7 @@ button { font-family: inherit; cursor: pointer; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-field { margin-bottom: 18px; }
 .form-field label { display: block; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-.form-field input, .form-field select {
+.form-field input, .form-field select, .form-field textarea {
   width: 100%;
   padding: 12px 14px;
   border: 1px solid var(--border);
@@ -169,13 +155,15 @@ button { font-family: inherit; cursor: pointer; }
   font-family: inherit;
   background: #fff;
   color: var(--text);
+  resize: vertical;
 }
-.form-field input:focus, .form-field select:focus {
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus {
   outline: none;
   border-color: var(--green);
   box-shadow: 0 0 0 3px var(--green-faint);
 }
-.form-field input::placeholder { color: #A9A6A0; }
+.form-field input::placeholder, .form-field textarea::placeholder { color: #A9A6A0; }
+.form-field label .optional { font-weight: 400; color: #A9A6A0; }
 
 .dropzone {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -362,14 +350,25 @@ button { font-family: inherit; cursor: pointer; }
 }
 .capital-col strong { color: var(--text); }
 
-/* ===== TRUST ===== */
-.trust { padding: 32px 0; border-top: 1px solid var(--border); }
-.trust-inner {
-  display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-  color: var(--text-muted); font-size: 14px; font-weight: 600;
+/* ===== BRAXTON LAB ===== */
+.lab { background: #fff; padding: 80px 0; border-top: 1px solid var(--border); }
+.lab-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
 }
-.trust-inner span { display: flex; align-items: center; gap: 8px; }
-.trust-inner svg { color: var(--green); }
+.lab-copy { max-width: 620px; }
+.lab-copy h2 {
+  font-family: var(--font-head);
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 14px;
+}
+.lab-copy p { color: var(--text-muted); line-height: 1.7; font-size: 15px; margin: 0; }
+.lab .calendly-cta { flex: none; }
 
 /* ===== FOOTER ===== */
 .site-footer { background: var(--green); padding: 36px 0; }

@@ -17,13 +17,8 @@
 <!-- ===== HEADER ===== -->
 <header class="site-header">
   <div class="container header-inner">
-    <a href="#" class="logo">
-      <svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="14" width="7" height="14" rx="1.5" fill="#9FC7BE"/>
-        <rect x="10" y="7" width="7" height="21" rx="1.5" fill="#FFFFFF"/>
-        <rect x="20" y="0" width="7" height="28" rx="1.5" fill="#FFFFFF"/>
-      </svg>
-      <span class="logo-text">braxton<small>LAB</small></span>
+    <a href="https://braxtonam.com" target="_blank" rel="noopener" class="logo">
+      <img src="assets/braxton-am-logo-white.png" alt="Braxton Asset Management" class="logo-img">
     </a>
     <nav class="main-nav">
       <a href="https://braxtonam.com" target="_blank" rel="noopener">Home</a>
@@ -42,12 +37,12 @@
     <div class="hero-copy">
       <h1>Concrétisez vos ambitions immobilières.<br><span class="muted">Sans compromis.</span></h1>
       <p class="hero-lead">
-        Obtenez une structuration sur-mesure (dette privée, portage foncier, quasi-fonds propres)
-        et une proposition d'accompagnement sous 48h. Nous transformons la complexité de vos
-        dossiers en rentabilité immédiate.
+        Dette privée, fonds propres, portage foncier. Braxton prend position à chaque étage
+        du capital des opérations immobilières — jusqu'à l'actif lui-même. De [500 k€ à 5 M€],
+        partout en France. Avis motivé sous 48 h, fonds débloqués en 2 à 5 semaines.
       </p>
       <ul class="hero-points">
-        <li><span class="dot"></span>De 500k€ à 50M€</li>
+        <li><span class="dot"></span>De 500k€ à 5M€</li>
         <li><span class="dot"></span>Fonds disponibles sous 2 à 5 semaines</li>
         <li><span class="dot"></span>100% Confidentiel</li>
         <li><span class="dot"></span>Sans engagement</li>
@@ -91,14 +86,16 @@
             <input type="tel" id="telephone" name="telephone" placeholder="+33 6 12 34 56 78" required>
           </div>
           <div class="form-field">
-            <label for="secteur">Secteur d'activité</label>
+            <label for="secteur">Vous êtes...</label>
             <select id="secteur" name="secteur" required>
               <option value="" disabled selected>Sélectionnez...</option>
               <option>Promoteur immobilier</option>
               <option>Marchand de biens</option>
               <option>Foncière / SCPI</option>
               <option>Family Office</option>
+              <option>Apporteur d'affaires</option>
               <option>Autre opérateur</option>
+              <option>Autre</option>
             </select>
           </div>
         </div>
@@ -127,8 +124,12 @@
             </select>
           </div>
           <div class="form-field">
-            <label for="valorisation">Valorisation visée à terme (€)</label>
+            <label for="valorisation">Montant d'accompagnement financier souhaité</label>
             <input type="number" id="valorisation" name="valorisation" placeholder="Ex : 5 000 000 €">
+          </div>
+          <div class="form-field">
+            <label for="besoinLibre">Décrivez-nous votre besoin <span class="optional">(optionnel)</span></label>
+            <textarea id="besoinLibre" name="besoinLibre" rows="3" placeholder="Précisez le contexte de votre projet..."></textarea>
           </div>
         </div>
 
@@ -170,7 +171,7 @@
   <div class="container call-bar-inner">
     <p><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       Préférez-vous en discuter d'abord&nbsp;? Prenez RDV directement avec un responsable d'investissement.</p>
-    <a href="https://calendly.com/maxime-braxtonam/30min" class="btn-primary" id="planCallBtn">Planifier un appel</a>
+    <a href="https://calendly.com/maxime-braxtonam/30min" class="btn-primary calendly-cta" id="planCallBtn">Planifier un appel</a>
   </div>
 </section>
 
@@ -178,7 +179,7 @@
 <section class="solutions" id="solutions">
   <div class="container">
     <p class="eyebrow">Nos solutions</p>
-    <h2>Propulsez vos projets immobiliers avec nos solutions de financement sur-mesure</h2>
+    <h2>Trois leviers de financement complémentaires</h2>
     <p class="section-lead">De l'acquisition foncière à la livraison, nous structurons le capital dont vous avez besoin pour maximiser votre rentabilité et accélérer vos opérations.</p>
 
     <div class="cards-grid">
@@ -186,7 +187,7 @@
         <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21V7l7-4v18M3 21h18M10 21V11l7-4v14M14 9h3M14 13h3M14 17h3"/></svg></div>
         <p class="card-eyebrow">Dette privée</p>
         <h3>Financement obligataire</h3>
-        <p>Boostez votre effet de levier. En alternative ou en complément de votre banque (jusqu'à 70% LTV), nous créons une dette sur-mesure (senior, mezzanine, junior ou whole loan) adaptée à la complexité et au calendrier de votre projet.</p>
+        <p>Senior, mezzanine, junior ou whole loan. En substitution ou en complément de votre banque, jusqu'à 70&nbsp;% de la valeur de l'actif. La structure, le calendrier et les sûretés se calent sur votre opération.</p>
         <a href="#" class="card-link">Simuler mon financement &rarr;</a>
       </article>
 
@@ -194,15 +195,15 @@
         <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l6-6 4 4 8-8M21 7v6"/></svg></div>
         <p class="card-eyebrow">Preferred equity</p>
         <h3>Actionnaire dormant</h3>
-        <p>Préservez votre trésorerie. Nous co-investissons à vos côtés en apportant jusqu'à 99% des fonds propres exigés par votre banque (via SCCV). Vous conservez le contrôle total du pilotage de votre opération tout en multipliant votre capacité d'investissement.</p>
+        <p>Nous apportons les fonds propres que votre banque exige. Co-investissement via SCCV jusqu'à 96&nbsp;% de l'apport demandé. Vous gardez le pilotage de l'opération et la marge promoteur. Nous prenons un rendement prioritaire et nous sortons à la livraison.</p>
         <a href="#" class="card-link">Discuter de mon projet &rarr;</a>
       </article>
 
       <article class="solution-card">
         <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a7 7 0 00-4 12.75V19a4 4 0 008 0v-4.25A7 7 0 0012 2z"/><path d="M9 21h6"/></svg></div>
         <p class="card-eyebrow">VCP / Portage</p>
-        <h3>Portage foncier</h3>
-        <p>Libérez des liquidités immédiates. Grâce au portage foncier (VCP), nous débloquons instantanément votre trésorerie en acquérant votre foncier. Une solution agile pour avancer sans attendre et sécuriser vos futures marges.</p>
+        <h3>Avance sur vente</h3>
+        <p>Nous acquérons votre foncier ou votre actif : vous encaissez immédiatement, et vous conservez un complément de prix indexé sur la valorisation à terme. La solution quand le calendrier bancaire ne suit pas le calendrier de l'opération.</p>
         <a href="#" class="card-link">Débloquer ma trésorerie &rarr;</a>
       </article>
     </div>
@@ -213,27 +214,28 @@
 <section class="capital">
   <div class="container capital-inner">
     <div class="ltv-col">
-      <p class="eyebrow">Loan to Value (LTV)</p>
-      <div class="ltv-bar bar-1"><span>Fonds Propres Opérateur</span><strong>10-20%</strong></div>
-      <div class="ltv-bar bar-2"><span>Pref Equity / Quasi-FP</span><strong>10-25%</strong></div>
-      <div class="ltv-bar bar-3"><span>Dette Privée Obligataire (Mezzanine)</span><strong>15-25%</strong></div>
-      <div class="ltv-bar bar-4"><span>Dette Senior (Banque / Obligation)</span><strong>50-70%</strong></div>
+      <p class="eyebrow">Structure du capital</p>
+      <div class="ltv-bar bar-1"><span>Fonds propres opérateur</span><strong>95-100%</strong></div>
+      <div class="ltv-bar bar-2"><span>Preferred equity / quasi-fonds propres</span><strong>80-95%</strong></div>
+      <div class="ltv-bar bar-3"><span>Dette privée mezzanine, garanties de premier rang</span><strong>60-80%</strong></div>
+      <div class="ltv-bar bar-4"><span>Dette senior (bancaire ou obligataire)</span><strong>0-60%</strong></div>
     </div>
     <div class="capital-col">
-      <h2>Structure du Capital</h2>
-      <p>Notre approche multi-strate nous permet d'intervenir à chaque niveau de la structure de capital, du senior debt jusqu'au quasi-fonds propres.</p>
-      <p>Le <strong>Preferred Equity</strong> se positionne entre la dette senior et les fonds propres de l'opérateur, offrant un profil rendement/risque ajusté avec priorité de remboursement.</p>
-      <p>La <strong>dette privée obligataire</strong> (senior ou mezzanine) permet de financer jusqu'à 80% de la valeur de l'actif avec des garanties de premier rang.</p>
+      <h2>Nous intervenons à chaque étage de la structure</h2>
+      <p>Peu d'acteurs couvrent les trois premières lignes. Nous structurons l'ensemble, ce qui évite d'empiler trois interlocuteurs aux calendriers incompatibles.</p>
     </div>
   </div>
 </section>
 
-<!-- ===== TRUST BADGES ===== -->
-<section class="trust">
-  <div class="container trust-inner">
-    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg> SSL Encrypted</span>
-    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg> GDPR Compliant</span>
-    <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg> ISO 27001</span>
+<!-- ===== BRAXTON LAB ===== -->
+<section class="lab" id="lab">
+  <div class="container lab-inner">
+    <div class="lab-copy">
+      <p class="eyebrow">Braxton Lab</p>
+      <h2>Vous voulez monter quelque chose avec nous&nbsp;?</h2>
+      <p>Au-delà du financement, Braxton Lab accompagne des entrepreneurs qui veulent construire une nouvelle activité liée à l'immobilier — plateforme, service, véhicule d'investissement. Nous apportons le capital, la structuration et notre réseau ; vous apportez la conviction et l'exécution.</p>
+    </div>
+    <a href="https://calendly.com/maxime-braxtonam/30min" class="btn-primary calendly-cta">Planifier un appel</a>
   </div>
 </section>
 
