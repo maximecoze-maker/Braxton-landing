@@ -68,9 +68,20 @@ document.addEventListener('DOMContentLoaded', () => {
     btnNext.disabled = true;
     btnNext.textContent = 'Envoi en cours...';
 
+    // Crée en parallèle la ligne correspondante dans la base Dealflow (Notion),
+    // assignée à JB. Ne bloque jamais l'envoi du formulaire si ça échoue.
+    const formData = new FormData(form);
+    const dealflowPayload = Object.fromEntries(formData.entries());
+    delete dealflowPayload.fileUpload; // fichier géré par Formspree, pas par Notion
+    fetch('/.netlify/functions/dealflow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dealflowPayload),
+    }).catch((err) => console.error('Dealflow sync failed', err));
+
     fetch(FORMSPREE_ENDPOINT, {
       method: 'POST',
-      body: new FormData(form),
+      body: formData,
       headers: { 'Accept': 'application/json' }
     })
       .then((response) => {
