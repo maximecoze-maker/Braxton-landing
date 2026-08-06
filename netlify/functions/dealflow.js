@@ -58,6 +58,8 @@ exports.handler = async (event) => {
     'Commentaire': { rich_text: [{ text: { content: commentaireLines.slice(0, 2000) } }] },
     'Statut': { status: { name: 'À analyser' } },
     'Responsable': { people: [{ id: JB_USER_ID }] },
+    // Requis pour apparaitre dans "Vue Dette privée" (filtre : Investment Type contient "Dette privée")
+    'Investment Type': { multi_select: [{ name: 'Dette privée' }] },
   };
 
   if (valorisation) {
