@@ -56,7 +56,7 @@ exports.handler = async (event) => {
   const properties = {
     'Actif': { title: [{ text: { content: titre.slice(0, 200) } }] },
     'Commentaire': { rich_text: [{ text: { content: commentaireLines.slice(0, 2000) } }] },
-    'Statut': { select: { name: 'À analyser' } },
+    'Statut': { status: { name: 'À analyser' } },
     'Responsable': { people: [{ id: JB_USER_ID }] },
   };
 
