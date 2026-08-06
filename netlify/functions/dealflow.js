@@ -85,7 +85,9 @@ exports.handler = async (event) => {
     if (!res.ok) {
       const errText = await res.text();
       console.error('Notion API error', res.status, errText);
-      return { statusCode: 502, body: JSON.stringify({ error: 'Notion a refusé la création' }) };
+      // TEMP debug: renvoie le detail de l'erreur Notion dans la reponse pour diagnostiquer
+      // sans acces au dashboard. A retirer une fois que l'integration fonctionne.
+      return { statusCode: 502, body: JSON.stringify({ error: 'Notion a refusé la création', status: res.status, detail: errText }) };
     }
 
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
