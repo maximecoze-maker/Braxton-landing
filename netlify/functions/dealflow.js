@@ -14,6 +14,7 @@ const TYPOLOGIE_MAP = {
   'Logistique / Activité': 'Logistique',
   'Hôtellerie': 'Hôtellerie',
   'Mixte': 'Mixte',
+  'Autre': 'Autre',
 };
 
 exports.handler = async (event) => {
