@@ -1,12 +1,12 @@
-// Reçoit la soumission du formulaire du site et crée une ligne dans la base
-// Notion "Dealflow Braxton AM", assignée à Jean-Baptiste (Responsable).
+// Reçoit la soumission des formulaires du site (offre A "financement" et offre B "lab")
+// et crée une ligne dans la base Notion "Dealflow Braxton AM", assignée à Jean-Baptiste (Responsable).
 // Nécessite la variable d'environnement Netlify NOTION_TOKEN (token d'intégration interne Notion,
 // avec la base Dealflow partagée avec cette intégration).
 
 const NOTION_DB_ID = 'bfc5f1ab-d583-4111-8448-3ac256b49fe4';
 const JB_USER_ID = '302d872b-594c-8198-9412-0002b8cb136b';
 
-// Mappe la typologie du formulaire vers les options existantes de "Classe d'actif"
+// Mappe la typologie du formulaire financement vers les options existantes de "Classe d'actif"
 const TYPOLOGIE_MAP = {
   'Résidentiel': 'Résidentiel',
   'Bureau': 'Bureau',
@@ -17,24 +17,7 @@ const TYPOLOGIE_MAP = {
   'Autre': 'Autre',
 };
 
-exports.handler = async (event) => {
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
-  }
-
-  const token = process.env.NOTION_TOKEN;
-  if (!token) {
-    console.error('NOTION_TOKEN manquant dans les variables d\'environnement Netlify');
-    return { statusCode: 500, body: JSON.stringify({ error: 'Notion non configuré' }) };
-  }
-
-  let data;
-  try {
-    data = JSON.parse(event.body || '{}');
-  } catch (e) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'JSON invalide' }) };
-  }
-
+function buildFinancementProperties(data) {
   const {
     prenom = '', nom = '', email = '', telephone = '',
     secteur = '', besoin = '', typologie = '', valorisation = '',
@@ -45,7 +28,7 @@ exports.handler = async (event) => {
   const titre = secteur ? `${nomComplet} — ${secteur}` : nomComplet;
 
   const commentaireLines = [
-    'Source : formulaire braxton-lab.netlify.app',
+    'Source : formulaire braxton-lab.netlify.app/financement',
     email && `Email : ${email}`,
     telephone && `Téléphone : ${telephone}`,
     secteur && `Vous êtes : ${secteur}`,
@@ -70,6 +53,72 @@ exports.handler = async (event) => {
 
   const classe = TYPOLOGIE_MAP[typologie];
   if (classe) properties["Classe d'actif"] = { select: { name: classe } };
+
+  return properties;
+}
+
+function buildLabProperties(data) {
+  const {
+    prenom = '', nom = '', email = '', telephone = '',
+    projet = '', stade = '', secteurLab = '', apporte = '', cherche = '',
+    montant = '',
+  } = data;
+
+  const nomComplet = `${prenom} ${nom}`.trim() || 'Lead site web';
+  const titre = `[Braxton Lab] ${projet || nomComplet}`;
+
+  const commentaireLines = [
+    'Source : formulaire braxton-lab.netlify.app/lab (partenariat entrepreneurial)',
+    `Porteur du projet : ${nomComplet}`,
+    email && `Email : ${email}`,
+    telephone && `Téléphone : ${telephone}`,
+    stade && `Stade : ${stade}`,
+    secteurLab && `Secteur / typologie visée : ${secteurLab}`,
+    apporte && `Ce qu'il/elle apporte : ${apporte}`,
+    cherche && `Ce qu'il/elle cherche chez Braxton : ${cherche}`,
+  ].filter(Boolean).join('\n');
+
+  // NB : pas de tag "Investment Type: Dette privée" ici — ce n'est pas une opération
+  // de dette privée, on evite de la faire apparaitre a tort dans la vue de JB dediee
+  // a ce pipeline. A voir avec Xavier/JB si une vue/tag dediee "Lab" doit etre creee
+  // dans Notion pour trier ces leads (B) — voir les arbitrages en fin de chantier.
+  const properties = {
+    'Actif': { title: [{ text: { content: titre.slice(0, 200) } }] },
+    'Commentaire': { rich_text: [{ text: { content: commentaireLines.slice(0, 2000) } }] },
+    'Statut': { status: { name: 'À analyser' } },
+    'Responsable': { people: [{ id: JB_USER_ID }] },
+  };
+
+  if (montant) {
+    const n = Number(String(montant).replace(/[^\d.]/g, ''));
+    if (!Number.isNaN(n) && n > 0) properties['Deal Size'] = { number: n };
+  }
+
+  return properties;
+}
+
+exports.handler = async (event) => {
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
+  }
+
+  const token = process.env.NOTION_TOKEN;
+  if (!token) {
+    console.error('NOTION_TOKEN manquant dans les variables d\'environnement Netlify');
+    return { statusCode: 500, body: JSON.stringify({ error: 'Notion non configuré' }) };
+  }
+
+  let data;
+  try {
+    data = JSON.parse(event.body || '{}');
+  } catch (e) {
+    return { statusCode: 400, body: JSON.stringify({ error: 'JSON invalide' }) };
+  }
+
+  // Tag "offre" pose par script.js : 'financement' (par defaut) ou 'lab'
+  const properties = data.offre === 'lab'
+    ? buildLabProperties(data)
+    : buildFinancementProperties(data);
 
   try {
     const res = await fetch('https://api.notion.com/v1/pages', {
