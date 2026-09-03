@@ -37,16 +37,42 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ===== REVEAL AU SCROLL ===== */
-/* .reveal : masque + decale legerement l'element ; .is-visible (ajoutee par script.js via
+/* .reveal : masque + decale + reduit legerement l'element ; .is-visible (ajoutee par script.js via
    IntersectionObserver quand l'element entre dans le viewport) le fait apparaitre.
    Neutralise si l'utilisateur prefere moins d'animation, ou si JS est desactive (voir noscript ci-dessous). */
 @media (prefers-reduced-motion: no-preference) {
-  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.is-visible { opacity: 1; transform: translateY(0); }
-  .reveal-1 { transition-delay: .08s; }
-  .reveal-2 { transition-delay: .16s; }
-  .reveal-3 { transition-delay: .24s; }
-  .reveal-4 { transition-delay: .32s; }
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px) scale(.97);
+    transition: opacity .7s cubic-bezier(.16,.8,.3,1), transform .7s cubic-bezier(.16,.8,.3,1);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+  .reveal-1 { transition-delay: .1s; }
+  .reveal-2 { transition-delay: .2s; }
+  .reveal-3 { transition-delay: .3s; }
+  .reveal-4 { transition-delay: .4s; }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 560px) {
+  /* Mobile : mouvement plus discret, l'ecran est deja petit — un gros deplacement y est plus brusque. */
+  .reveal { transform: translateY(18px) scale(.99); }
+}
+
+/* ===== HOVER CARTES CLIQUABLES ===== */
+/* solution-card et door sont maintenant des <a> pleine carte (voir HTML) : tout le bloc mene
+   au meme endroit que son bouton/lien interne. Feedback au survol uniquement sur les appareils
+   avec un vrai pointeur (souris/trackpad) — evite l'etat "hover coince" au doigt sur tactile. */
+.solution-card, .door { cursor: pointer; }
+@media (hover: hover) and (pointer: fine) {
+  .solution-card, .door {
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .solution-card:hover, .door:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -24px rgba(0, 41, 34, 0.35);
+    border-color: var(--gold);
+  }
+  .solution-card:hover .card-icon { background: var(--gold); color: #fff; transition: background .25s ease, color .25s ease; }
+  .solution-card:hover .card-link, .door:hover .btn-primary { text-decoration: underline; }
 }
 
 /* ===== HEADER ===== */
@@ -424,6 +450,7 @@ button { font-family: inherit; cursor: pointer; }
   padding-top: 36px;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
+.stat-item { display: flex; flex-direction: column; }
 .stat-number {
   font-family: var(--font-head);
   font-size: 30px;
@@ -431,6 +458,11 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--gold);
   line-height: 1.15;
   margin: 0;
+  /* Hauteur reservee pour 2 lignes : meme le libelle le plus court (une seule ligne) s'aligne
+     sur la meme ligne de base que "Toutes typologies", qui en prend deux. */
+  min-height: 74px;
+  display: flex;
+  align-items: flex-end;
 }
 .stat-label {
   font-size: 13px;
@@ -439,7 +471,9 @@ button { font-family: inherit; cursor: pointer; }
   margin: 6px 0 0;
 }
 .hero .stats-bar { text-align: left; }
+.hero .stat-number { justify-content: flex-start; }
 .page-hero .stats-bar { text-align: center; }
+.page-hero .stat-number { justify-content: center; }
 .page-hero p.eyebrow { color: #B7D6CF; justify-content: center; }
 .page-hero h1 {
   color: #fff;

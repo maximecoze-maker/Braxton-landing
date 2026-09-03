@@ -49,6 +49,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  /* ---------- Compteurs animés (.stat-count du bandeau de chiffres) ----------
+     Compte de 0 jusqu'à data-count-to dès que le chiffre entre dans le viewport.
+     Respecte prefers-reduced-motion : affiche directement la valeur finale. */
+  const statCounts = document.querySelectorAll('.stat-count');
+  if (statCounts.length) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const animateCount = (el) => {
+      const target = parseInt(el.dataset.countTo, 10);
+      if (isNaN(target)) return;
+      if (prefersReducedMotion) { el.textContent = target; return; }
+      const duration = 1200;
+      const start = performance.now();
+      const step = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    if ('IntersectionObserver' in window) {
+      const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCount(entry.target);
+            countObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      statCounts.forEach((el) => countObserver.observe(el));
+    } else {
+      statCounts.forEach((el) => { el.textContent = el.dataset.countTo; });
+    }
+  }
+
   /* ---------- "Planifier un appel" / "Prendre RDV" -> Calendly popup ----------
      Page-agnostic : s'applique partout où un .calendly-cta existe. */
   document.querySelectorAll('.calendly-cta').forEach((btn) => {
