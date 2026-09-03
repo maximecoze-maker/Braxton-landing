@@ -27,6 +27,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // localStorage indisponible (navigation privée stricte, etc.) : on n'affiche pas le bandeau plutôt que de le réafficher en boucle.
   }
 
+  /* ---------- Animations au scroll (.reveal) ----------
+     Page-agnostic : observe tout élément .reveal présent sur la page et lui ajoute
+     .is-visible dès qu'il entre dans le viewport (une seule fois). Le rendu réel de
+     l'animation est géré en CSS et neutralisé pour prefers-reduced-motion. */
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length) {
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach((el) => revealObserver.observe(el));
+    } else {
+      // Pas de support IntersectionObserver : on affiche directement, pas d'animation.
+      revealEls.forEach((el) => el.classList.add('is-visible'));
+    }
+  }
+
   /* ---------- "Planifier un appel" / "Prendre RDV" -> Calendly popup ----------
      Page-agnostic : s'applique partout où un .calendly-cta existe. */
   document.querySelectorAll('.calendly-cta').forEach((btn) => {

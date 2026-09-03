@@ -36,6 +36,19 @@ button { font-family: inherit; cursor: pointer; }
   padding: 0 24px;
 }
 
+/* ===== REVEAL AU SCROLL ===== */
+/* .reveal : masque + decale legerement l'element ; .is-visible (ajoutee par script.js via
+   IntersectionObserver quand l'element entre dans le viewport) le fait apparaitre.
+   Neutralise si l'utilisateur prefere moins d'animation, ou si JS est desactive (voir noscript ci-dessous). */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .reveal-1 { transition-delay: .08s; }
+  .reveal-2 { transition-delay: .16s; }
+  .reveal-3 { transition-delay: .24s; }
+  .reveal-4 { transition-delay: .32s; }
+}
+
 /* ===== HEADER ===== */
 .site-header {
   background: var(--green);
@@ -72,7 +85,13 @@ button { font-family: inherit; cursor: pointer; }
 .nav-toggle span { width: 22px; height: 2px; background: #fff; border-radius: 2px; }
 
 /* ===== HERO ===== */
-.hero { background: var(--green); padding: 64px 0 96px; }
+.hero {
+  background:
+    radial-gradient(640px circle at 12% 8%, rgba(221, 167, 60, 0.16), transparent 60%),
+    radial-gradient(560px circle at 88% 92%, rgba(0, 149, 128, 0.35), transparent 60%),
+    var(--green-dark);
+  padding: 64px 0 96px;
+}
 .hero-inner {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -318,6 +337,18 @@ button { font-family: inherit; cursor: pointer; }
 .card-link { color: var(--green); font-weight: 700; font-size: 14.5px; }
 .card-link:hover { text-decoration: underline; }
 
+.card-specs {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin: 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.spec-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 13px; }
+.spec-row span { color: var(--text-muted); }
+.spec-row strong { color: var(--text); font-weight: 700; text-align: right; }
+
 /* ===== CAPITAL / LTV ===== */
 .capital { background: var(--panel); padding: 96px 0; }
 .capital-inner {
@@ -375,6 +406,40 @@ button { font-family: inherit; cursor: pointer; }
 /* ===== PAGE HERO (home / lab / mentions / confidentialite) ===== */
 .page-hero { background: var(--green); padding: 72px 0 64px; text-align: center; }
 .page-hero-inner { max-width: 760px; margin: 0 auto; }
+/* Halo degrade : reserve aux pages editoriales (accueil, lab) via cette classe additionnelle.
+   Les pages legales gardent .page-hero seul, en aplat, plus sobre. */
+.page-hero-glow {
+  background:
+    radial-gradient(640px circle at 15% 10%, rgba(221, 167, 60, 0.16), transparent 60%),
+    radial-gradient(560px circle at 85% 95%, rgba(0, 149, 128, 0.35), transparent 60%),
+    var(--green-dark);
+}
+
+/* ===== STATS BAR ===== */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 24px;
+  margin-top: 48px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.stat-number {
+  font-family: var(--font-head);
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1.15;
+  margin: 0;
+}
+.stat-label {
+  font-size: 13px;
+  color: #B7D6CF;
+  line-height: 1.4;
+  margin: 6px 0 0;
+}
+.hero .stats-bar { text-align: left; }
+.page-hero .stats-bar { text-align: center; }
 .page-hero p.eyebrow { color: #B7D6CF; justify-content: center; }
 .page-hero h1 {
   color: #fff;
@@ -556,6 +621,7 @@ button { font-family: inherit; cursor: pointer; }
   .doors-grid { grid-template-columns: 1fr; }
   .criteria-list { grid-template-columns: 1fr; }
   .process-grid { grid-template-columns: 1fr 1fr; }
+  .stats-bar { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {
   .hero-copy h1 { font-size: 30px; }
