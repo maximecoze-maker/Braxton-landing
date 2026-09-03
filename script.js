@@ -7,6 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
     mainNav?.classList.toggle('open');
   });
 
+  /* ---------- Bandeau cookies (widget Calendly) — affiché une fois, mémorisé en localStorage ---------- */
+  const COOKIE_NOTICE_KEY = 'braxton_cookie_notice_dismissed';
+  try {
+    if (!localStorage.getItem(COOKIE_NOTICE_KEY)) {
+      const notice = document.createElement('div');
+      notice.className = 'cookie-notice';
+      notice.innerHTML = `
+        <p>Ce site intègre le widget de prise de rendez-vous Calendly, susceptible de déposer des cookies. En savoir plus dans notre <a href="confidentialite.html">politique de confidentialité</a>.</p>
+        <button type="button" class="cookie-notice-ok">Compris</button>
+      `;
+      document.body.appendChild(notice);
+      notice.querySelector('.cookie-notice-ok').addEventListener('click', () => {
+        try { localStorage.setItem(COOKIE_NOTICE_KEY, '1'); } catch (err) {}
+        notice.remove();
+      });
+    }
+  } catch (err) {
+    // localStorage indisponible (navigation privée stricte, etc.) : on n'affiche pas le bandeau plutôt que de le réafficher en boucle.
+  }
+
   /* ---------- "Planifier un appel" / "Prendre RDV" -> Calendly popup ----------
      Page-agnostic : s'applique partout où un .calendly-cta existe. */
   document.querySelectorAll('.calendly-cta').forEach((btn) => {
