@@ -51,6 +51,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .logo { display: flex; align-items: center; gap: 10px; }
 .logo-img { height: 32px; width: auto; display: block; }
+.logo-lockup { height: 36px; width: auto; display: block; color: #FFFFFF; }
 .main-nav { display: flex; gap: 32px; }
 .main-nav a {
   color: #E8F1EE;
