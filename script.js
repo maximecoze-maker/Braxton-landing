@@ -114,7 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentStep = 1;
 
     // Présélection du "besoin" depuis les CTA des cartes solutions
-    // (ex: financement.html?besoin=dette#leadForm)
+    // (ex: financement.html?besoin=dette)
+    // Pas de #leadForm : on atterrit en haut de page, pas directement sur le formulaire.
     const BESOIN_MAP = {
       dette: 'Financement rapide (Dette / Substitution banque)',
       equity: "J'ai la dette bancaire, je cherche l'apport (Quasi-fonds propres)",
