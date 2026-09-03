@@ -571,4 +571,5 @@ button { font-family: inherit; cursor: pointer; }
   .page-hero h1 { font-size: 28px; }
   .process-grid { grid-template-columns: 1fr; }
   .door { padding: 28px 22px; }
+  .lab-inner .btn-primary { white-space: normal; width: 100%; text-align: center; }
 }
