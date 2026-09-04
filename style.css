@@ -73,7 +73,7 @@ button { font-family: inherit; cursor: pointer; }
     box-shadow: 0 20px 40px -24px rgba(0, 41, 34, 0.35);
     border-color: var(--gold);
   }
-  .solution-card:hover .card-icon { background: var(--gold); color: #fff; transition: background .25s ease, color .25s ease; }
+  .solution-card:hover .card-icon, .bring-item:hover .card-icon { background: var(--gold); color: #fff; transition: background .25s ease, color .25s ease; }
   .solution-card:hover .card-link, .door:hover .btn-primary { text-decoration: underline; }
 }
 
