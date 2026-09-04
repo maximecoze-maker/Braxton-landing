@@ -637,17 +637,19 @@ button { font-family: inherit; cursor: pointer; }
   .doors-grid { grid-template-columns: 1fr; }
   .process-grid { grid-template-columns: 1fr 1fr; }
   .stats-bar { grid-template-columns: 1fr 1fr; }
+  /* 3 stats dans une grille a 2 colonnes laisserait le 3e isole dans la colonne de
+     gauche (non centre) : on repasse cette variante en 1 colonne. */
+  .stats-bar-3 { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .hero-copy h1 { font-size: 30px; }
   .hero-points { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
-  .call-bar-inner { flex-direction: column; align-items: flex-start; }
   .solutions h2 { font-size: 26px; }
   .form-card { padding: 20px; }
   .step-label { display: none; }
   .header-inner { flex-wrap: wrap; height: auto; padding: 12px 0; gap: 10px 20px; }
-  .main-nav { gap: 16px; }
+  .main-nav { width: 100%; justify-content: center; gap: 16px; }
   .main-nav a { font-size: 14px; }
   .page-hero h1 { font-size: 28px; }
   .process-grid { grid-template-columns: 1fr; }
