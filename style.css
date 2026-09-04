@@ -470,6 +470,7 @@ button { font-family: inherit; cursor: pointer; }
   line-height: 1.4;
   margin: 6px 0 0;
 }
+.stats-bar-3 { grid-template-columns: repeat(3, 1fr); }
 .hero .stats-bar { text-align: left; }
 .hero .stat-number { justify-content: flex-start; }
 .page-hero .stats-bar { text-align: center; }
@@ -561,6 +562,20 @@ button { font-family: inherit; cursor: pointer; }
 .process-step .step-num { font-family: var(--font-head); font-size: 13px; font-weight: 800; color: var(--gold); letter-spacing: 1px; }
 .process-step h3 { font-size: 15.5px; font-weight: 700; margin: 10px 0 8px; }
 .process-step p { color: var(--text-muted); font-size: 13.5px; line-height: 1.6; margin: 0; }
+.process-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+/* ===== ALFRED HOTELS - REALISATION (lab) ===== */
+.solutions-dark { background: var(--green-dark); }
+.solutions-dark .eyebrow { color: #B7D6CF; }
+.solutions-dark h2 { color: #fff; }
+.solutions-dark .section-lead { color: #D7E7E2; }
+.solutions-dark .disclaimer {
+  color: #8FB6AF;
+  font-size: 11.5px;
+  line-height: 1.5;
+  max-width: 720px;
+  margin: 32px auto 0;
+}
 
 /* ===== CE QUE CE N'EST PAS (lab) ===== */
 .not-this { background: var(--panel); padding: 56px 0; }
