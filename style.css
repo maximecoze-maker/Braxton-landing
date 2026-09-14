@@ -550,11 +550,44 @@ button { font-family: inherit; cursor: pointer; }
 .process-step p { color: var(--text-muted); font-size: 13.5px; line-height: 1.6; margin: 0; }
 .process-grid-3 { grid-template-columns: repeat(3, 1fr); }
 
-/* ===== ALFRED HOTELS - REALISATION (lab) ===== */
+/* ===== NOS REALISATIONS - ONGLETS (lab) ===== */
 .solutions-dark { background: var(--green-dark); }
 .solutions-dark .eyebrow { color: #B7D6CF; }
 .solutions-dark h2 { color: #fff; }
 .solutions-dark .section-lead { color: #D7E7E2; }
+
+.case-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 40px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.case-tabs::-webkit-scrollbar { display: none; }
+.case-tab {
+  flex: none;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  color: #D7E7E2;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: border-color .15s ease, background .15s ease, color .15s ease;
+}
+.case-tab[aria-selected="true"] { background: var(--gold); border-color: var(--gold); color: var(--green-dark); }
+.case-tab:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) {
+  .case-tab:hover { border-color: var(--gold); }
+}
+.case-panel { margin-top: 40px; }
+.case-panel h3 { font-family: var(--font-head); font-size: 28px; font-weight: 800; color: #fff; margin: 0 0 12px; line-height: 1.3; }
+.case-panel-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 24px; color: #fff; font-weight: 700; font-size: 14.5px; }
+@media (hover: hover) and (pointer: fine) {
+  .case-panel-link:hover { text-decoration: underline; }
+}
 
 /* ===== FAQ (lab) ===== */
 .faq { padding: 72px 0; }
