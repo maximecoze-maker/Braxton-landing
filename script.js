@@ -268,14 +268,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showStep(currentStep);
 
-    /* ---------- File dropzone ---------- */
+    /* ---------- File dropzone ----------
+       Le texte sous la dropzone annonce "Max 10 Mo" mais rien ne le verifiait :
+       un fichier plus lourd etait accepte silencieusement ici, puis rejete
+       seulement a l'envoi (Formspree), sans explication -> ca ressemblait a
+       un glisser-deposer casse. On verifie desormais la taille immediatement,
+       au clic comme au glisser-depose, avec un message clair sinon. */
     const dropzone = document.getElementById('dropzone');
     const fileInput = document.getElementById('fileUpload');
     const dropzoneText = document.getElementById('dropzoneText');
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 Mo — doit rester coherent avec le texte affiche sous la dropzone
 
-    fileInput.addEventListener('change', () => {
-      if (fileInput.files[0]) dropzoneText.textContent = fileInput.files[0].name;
-    });
+    const formatMo = (bytes) => (bytes / (1024 * 1024)).toFixed(1).replace(/\.0$/, '');
+
+    const applyFile = (file) => {
+      if (!file) return;
+      if (file.size > MAX_FILE_SIZE) {
+        fileInput.value = ''; // annule toute selection (native ou glissee) : on ne soumet jamais un fichier trop lourd
+        dropzoneText.textContent = `Fichier trop volumineux (${formatMo(file.size)} Mo, 10 Mo max) : réessayez avec un fichier plus léger.`;
+        dropzone.classList.add('dropzone-error');
+        return;
+      }
+      dropzone.classList.remove('dropzone-error');
+      dropzoneText.textContent = file.name;
+    };
+
+    fileInput.addEventListener('change', () => applyFile(fileInput.files[0]));
 
     ['dragenter', 'dragover'].forEach(evt =>
       dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.add('dragover'); })
@@ -285,10 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     dropzone.addEventListener('drop', (e) => {
       const file = e.dataTransfer.files[0];
-      if (file) {
-        fileInput.files = e.dataTransfer.files;
-        dropzoneText.textContent = file.name;
-      }
+      if (!file) return;
+      if (file.size <= MAX_FILE_SIZE) fileInput.files = e.dataTransfer.files;
+      applyFile(file);
     });
   }
 
