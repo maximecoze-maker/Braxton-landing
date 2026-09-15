@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showStep(currentStep);
 
     /* ---------- File dropzone ----------
-       Le texte sous la dropzone annonce "Max 10 Mo" mais rien ne le verifiait :
+       Le texte sous la dropzone annonce une taille max mais rien ne la verifiait :
        un fichier plus lourd etait accepte silencieusement ici, puis rejete
        seulement a l'envoi (Formspree), sans explication -> ca ressemblait a
        un glisser-deposer casse. On verifie desormais la taille immediatement,
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropzone = document.getElementById('dropzone');
     const fileInput = document.getElementById('fileUpload');
     const dropzoneText = document.getElementById('dropzoneText');
-    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 Mo — doit rester coherent avec le texte affiche sous la dropzone
+    const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25 Mo = plafond reel de Formspree par fichier — doit rester coherent avec le texte affiche sous la dropzone
 
     const formatMo = (bytes) => (bytes / (1024 * 1024)).toFixed(1).replace(/\.0$/, '');
 
@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!file) return;
       if (file.size > MAX_FILE_SIZE) {
         fileInput.value = ''; // annule toute selection (native ou glissee) : on ne soumet jamais un fichier trop lourd
-        dropzoneText.textContent = `Fichier trop volumineux (${formatMo(file.size)} Mo, 10 Mo max) : réessayez avec un fichier plus léger.`;
+        dropzoneText.textContent = `Fichier trop volumineux (${formatMo(file.size)} Mo, ${formatMo(MAX_FILE_SIZE)} Mo max) : réessayez avec un fichier plus léger.`;
         dropzone.classList.add('dropzone-error');
         return;
       }
