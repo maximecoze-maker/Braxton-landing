@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!file) return;
       if (file.size > MAX_FILE_SIZE) {
         fileInput.value = ''; // annule toute selection (native ou glissee) : on ne soumet jamais un fichier trop lourd
-        dropzoneText.textContent = `Fichier trop volumineux (${formatMo(file.size)} Mo, ${formatMo(MAX_FILE_SIZE)} Mo max) : réessayez avec un fichier plus léger.`;
+        dropzoneText.textContent = `Fichier trop volumineux (${formatMo(file.size)} Mo, ${formatMo(MAX_FILE_SIZE)} Mo max) : merci de l'envoyer directement à jb@braxtonam.com.`;
         dropzone.classList.add('dropzone-error');
         return;
       }
