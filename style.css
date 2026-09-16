@@ -710,4 +710,8 @@ button { font-family: inherit; cursor: pointer; }
   .process-grid { grid-template-columns: 1fr; }
   .door { padding: 28px 22px; }
   .lab-inner .btn-primary { white-space: normal; width: 100%; text-align: center; }
+  /* Logo + nom de l'operateur : a cote sur desktop, empiles (logo au-dessus, tout
+     centre) sur mobile — cote a cote, le titre sur plusieurs lignes ecrasait le logo
+     contre le bord gauche au lieu de rester groupe avec le nom. */
+  .case-panel-head { flex-direction: column; }
 }
