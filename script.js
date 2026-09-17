@@ -149,10 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       if (window.Calendly) {
-        window.Calendly.initPopupWidget({ url: 'https://calendly.com/maxime-braxtonam/30min' });
+        window.Calendly.initPopupWidget({ url: 'https://calendly.com/jb-braxtonam/30min' });
       } else {
         // Calendly script not loaded yet (slow connection) — fall back to opening in a new tab.
-        window.open('https://calendly.com/maxime-braxtonam/30min', '_blank');
+        window.open('https://calendly.com/jb-braxtonam/30min', '_blank');
       }
     });
   });
