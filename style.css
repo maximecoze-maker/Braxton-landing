@@ -95,7 +95,10 @@ button { font-family: inherit; cursor: pointer; }
 /* Variante avec sous-titre (ex: "Real Estate Debt" sous le logo sur Financer une operation) :
    passe le logo en pile verticale au lieu de la ligne horizontale par defaut. */
 .logo-with-tagline { flex-direction: column; align-items: flex-start; gap: 0; }
-.logo-tagline { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; line-height: 1; color: #fff; }
+/* Le texte "braxton"/"ASSET MANAGEMENT" ne commence pas au bord de l'image : l'icone a
+   gauche prend de la place avant. Mesure au pixel dans braxton-am-logo-white.png : le texte
+   demarre a x=113 sur 401px de large -> 113/401 * largeur affichee (32px * 401/81) = 44.6px. */
+.logo-tagline { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; line-height: 1; color: #fff; margin-left: 44.6px; }
 .logo-lockup { height: 36px; width: auto; display: block; color: #FFFFFF; }
 .main-nav { display: flex; gap: 32px; }
 .main-nav a {
