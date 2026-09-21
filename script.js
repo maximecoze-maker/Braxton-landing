@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ============================================================
-     FORMULAIRE BRAXTON LAB (lab.html uniquement)
+     FORMULAIRE BRAXTON STUDIO (lab.html uniquement)
      ============================================================ */
   const labForm = document.getElementById('labForm');
   if (labForm) {
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const formData = new FormData(labForm);
       // Tag distinct pour trier les leads (A) financement vs (B) partenariat entrepreneurial
-      formData.append('_subject', 'Nouvelle demande — Braxton Lab (partenariat entrepreneurial)');
+      formData.append('_subject', 'Nouvelle demande — Braxton Studio (partenariat entrepreneurial)');
       formData.append('offre', 'lab');
 
       const dealflowPayload = Object.fromEntries(formData.entries());

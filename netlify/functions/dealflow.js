@@ -65,7 +65,7 @@ function buildLabProperties(data) {
   } = data;
 
   const nomComplet = `${prenom} ${nom}`.trim() || 'Lead site web';
-  const titre = `[Braxton Lab] ${projet || nomComplet}`;
+  const titre = `[Braxton Studio] ${projet || nomComplet}`;
 
   const commentaireLines = [
     'Source : formulaire braxton-lab.netlify.app/lab (partenariat entrepreneurial)',
