@@ -94,8 +94,8 @@ button { font-family: inherit; cursor: pointer; }
 .logo-img { height: 32px; width: auto; display: block; }
 /* Variante avec sous-titre (ex: "Real Estate Debt" sous le logo sur Financer une operation) :
    passe le logo en pile verticale au lieu de la ligne horizontale par defaut. */
-.logo-with-tagline { flex-direction: column; align-items: flex-start; gap: 2px; }
-.logo-tagline { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #9FC7BE; }
+.logo-with-tagline { flex-direction: column; align-items: flex-start; gap: 0; }
+.logo-tagline { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; line-height: 1; color: #EF4444; }
 .logo-lockup { height: 36px; width: auto; display: block; color: #FFFFFF; }
 .main-nav { display: flex; gap: 32px; }
 .main-nav a {
